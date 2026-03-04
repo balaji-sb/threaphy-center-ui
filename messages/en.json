@@ -1,0 +1,18 @@
+{
+  "Index": {
+    "title": "Welcome to Our Therapy Center",
+    "description": "Professional support for a peaceful mind."
+  },
+  "Navigation": {
+    "home": "Home",
+    "services": "Services",
+    "therapists": "Our Therapists",
+    "blog": "Blog",
+    "contact": "Contact",
+    "login": "Login"
+  },
+  "Common": {
+    "bookNow": "Book an Appointment",
+    "language": "Language"
+  }
+}
