@@ -60,7 +60,7 @@ export default function Home() {
         <div className="container px-4 md:px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-extrabold sm:text-4xl text-foreground">
-              Our Core Therapies
+              {t("coreTherapies")}
             </h2>
             <div className="mt-4 h-1 w-20 bg-secondary mx-auto rounded-full"></div>
           </div>
@@ -71,10 +71,11 @@ export default function Home() {
               <div className="p-5 bg-primary/10 rounded-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                 <HeartPulse className="h-10 w-10 text-primary group-hover:text-white transition-colors" />
               </div>
-              <h3 className="text-2xl font-bold mb-3">Individual Therapy</h3>
+              <h3 className="text-2xl font-bold mb-3">
+                {t("individualTherapyTitle")}
+              </h3>
               <p className="text-muted-foreground leading-relaxed">
-                One-on-one sessions for personalized care, self-discovery, and
-                emotional resilience in a safe space.
+                {t("individualTherapyDesc")}
               </p>
             </div>
 
@@ -83,10 +84,11 @@ export default function Home() {
               <div className="p-5 bg-secondary/10 rounded-2xl mb-6 group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
                 <Users className="h-10 w-10 text-secondary group-hover:text-white transition-colors" />
               </div>
-              <h3 className="text-2xl font-bold mb-3">Couples Counseling</h3>
+              <h3 className="text-2xl font-bold mb-3">
+                {t("couplesCounselingTitle")}
+              </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Relationship support focused on active communication, resolving
-                conflicts, and deep understanding.
+                {t("couplesCounselingDesc")}
               </p>
             </div>
 
@@ -95,10 +97,11 @@ export default function Home() {
               <div className="p-5 bg-accent/10 rounded-2xl mb-6 group-hover:bg-accent group-hover:text-white transition-colors duration-300">
                 <ShieldCheck className="h-10 w-10 text-accent group-hover:text-white transition-colors" />
               </div>
-              <h3 className="text-2xl font-bold mb-3">Group Therapy</h3>
+              <h3 className="text-2xl font-bold mb-3">
+                {t("groupTherapyTitle")}
+              </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Community support and shared experiences. Healing together in a
-                secure and guided environment.
+                {t("groupTherapyDesc")}
               </p>
             </div>
           </div>

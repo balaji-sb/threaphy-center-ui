@@ -22,9 +22,9 @@ export default function LoginPage() {
 
     try {
       const response = await api.post("/auth/login", { email, password });
-      const { user, token } = response.data;
+      const { user, accessToken } = response.data;
 
-      login(user, token);
+      login(user, accessToken);
 
       // Redirect based on role
       switch (user.role) {

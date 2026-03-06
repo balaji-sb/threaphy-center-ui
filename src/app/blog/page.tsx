@@ -1,6 +1,8 @@
+import { getTranslations, getLocale } from "next-intl/server";
+
 async function getBlogs() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api"}/blogs`,
+    `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001/api"}/blogs`,
     {
       cache: "no-store",
     },
@@ -11,69 +13,94 @@ async function getBlogs() {
 
 export default async function BlogPage() {
   const blogs = await getBlogs();
+  const t = await getTranslations("Blog");
+  const locale = await getLocale();
 
   return (
     <div className="min-h-screen bg-muted/20">
-      {/* Header section */}
-      <div className="bg-gradient-to-r from-primary to-accent py-16 md:py-24 text-white">
-        <div className="container px-4 md:px-6">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 drop-shadow-sm">
-            Blog
-          </h1>
-          <p className="text-white/90 text-xl max-w-2xl font-medium">
-            Explore our latest articles, insights, and expert advice on mental
-            health, relationships, and holistic well-being.
-          </p>
+      {/* Vibrant Material Header section */}
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-blue-500 via-blue-500 to-teal-500 border-b border-border/10 pt-20 pb-32 md:pt-28 md:pb-40 flex justify-center shadow-md">
+        {/* Subtle, elegant organic background shapes */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-white/10 via-transparent to-black/10"></div>
+          <div className="absolute -top-[30%] -right-[10%] w-[60%] h-[130%] rounded-[100%] bg-white blur-3xl transform rotate-12 opacity-10"></div>
+          <div className="absolute -bottom-[20%] -left-[10%] w-[50%] h-[100%] rounded-[100%] bg-black blur-3xl transform -rotate-12 opacity-10"></div>
         </div>
-      </div>
 
-      <div className="container py-12 px-4 md:px-6 -mt-10">
+        <div className="container relative z-10 px-4 md:px-6 text-center">
+          <div className="space-y-6 max-w-3xl mx-auto">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-balance drop-shadow-sm">
+              {t("title")}
+            </h1>
+            <p className="mx-auto max-w-2xl text-white/90 text-lg md:text-xl leading-relaxed text-balance">
+              {t("subtitle")}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="relative py-12 px-4 md:px-6 mt-20 md:mt-24 z-20">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {blogs.length === 0 ? (
             <p className="text-muted-foreground z-10 w-full text-center col-span-full">
-              No blog posts available at the moment.
+              {t("noBlogs")}
             </p>
           ) : (
-            blogs.map((blog: any) => (
-              <article
-                key={blog._id}
-                className="group flex flex-col overflow-hidden rounded-3xl border border-border/50 bg-card shadow-elevation-1 transition-all duration-300 hover:-translate-y-3 hover:shadow-elevation-4 z-10"
-              >
-                <div className="relative aspect-[16/9] w-full overflow-hidden bg-muted/50">
-                  <div className="absolute inset-0 flex items-center justify-center bg-secondary/10 group-hover:scale-105 transition-transform duration-500">
-                    <span className="text-muted-foreground font-semibold">
-                      Blog Cover
-                    </span>
+            blogs.map(
+              (blog: {
+                _id: string;
+                title?: Record<string, string>;
+                excerpt?: Record<string, string>;
+                content?: Record<string, string>;
+                author?: { name: string };
+                createdAt: string;
+              }) => (
+                <article
+                  key={blog._id}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 z-10"
+                >
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100">
+                    <div className="absolute inset-0 flex items-center justify-center bg-slate-50 group-hover:scale-105 transition-transform duration-500">
+                      <span className="text-slate-400 font-medium">
+                        {t("coverPlaceholder")}
+                      </span>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex flex-1 flex-col p-6 md:p-8">
-                  <div className="mb-4 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                    <span className="text-primary bg-primary/10 px-3 py-1 rounded-full">
-                      Mental Health
-                    </span>
-                    <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
+                  <div className="flex flex-1 flex-col p-6 md:p-8">
+                    <div className="mb-4 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-500">
+                      <span className="text-primary bg-primary/5 px-3 py-1 rounded-full border border-primary/10">
+                        {t("fallbackCategory")}
+                      </span>
+                      <span>
+                        {new Date(blog.createdAt).toLocaleDateString()}
+                      </span>
+                    </div>
+
+                    <h2 className="mb-3 text-2xl font-semibold leading-tight text-foreground group-hover:text-primary transition-colors">
+                      {blog.title?.[locale] || blog.title?.en}
+                    </h2>
+
+                    <p className="mb-6 flex-1 text-slate-500 leading-relaxed line-clamp-3">
+                      {blog.excerpt?.[locale] ||
+                        blog.content?.[locale] ||
+                        blog.excerpt?.en ||
+                        blog.content?.en}
+                    </p>
+
+                    <div className="flex items-center justify-between border-t border-slate-100 pt-5">
+                      <span className="text-sm font-medium text-slate-600">
+                        {t("author")} {blog.author?.name}
+                      </span>
+                      <button className="text-sm font-medium text-primary flex items-center gap-1 transition-all hover:text-primary/80 group-hover:gap-2">
+                        {t("readArticle")}{" "}
+                        <span aria-hidden="true">&rarr;</span>
+                      </button>
+                    </div>
                   </div>
-
-                  <h2 className="mb-3 text-2xl font-bold leading-tight group-hover:text-primary transition-colors">
-                    {blog.title?.en}
-                  </h2>
-
-                  <p className="mb-6 flex-1 text-muted-foreground leading-relaxed line-clamp-3">
-                    {blog.excerpt?.en || blog.content?.en}
-                  </p>
-
-                  <div className="flex items-center justify-between border-t border-border pt-4">
-                    <span className="text-sm font-semibold text-muted-foreground">
-                      Author: {blog.author?.name}
-                    </span>
-                    <button className="text-sm font-bold text-primary transition-all hover:text-primary/80 group-hover:underline">
-                      Read Article &rarr;
-                    </button>
-                  </div>
-                </div>
-              </article>
-            ))
+                </article>
+              ),
+            )
           )}
         </div>
       </div>

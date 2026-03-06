@@ -11,7 +11,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Agnipengal Therapy Center",
+  title: "Joyful Journey Multi-Therapy Centre",
   description: "Multilingual professional therapy services.",
 };
 

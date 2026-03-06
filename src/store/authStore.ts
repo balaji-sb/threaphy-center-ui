@@ -1,29 +1,60 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface User {
-  _id: string;
+export interface User {
+  _id?: string;
+  id?: string;
   name: string;
   email: string;
   role: "admin" | "therapist" | "client";
 }
 
-interface AuthState {
+interface Session {
   user: User | null;
   token: string | null;
   isAuthenticated: boolean;
-  login: (user: User, token: string) => void;
-  logout: () => void;
 }
+
+interface AuthState {
+  admin: Session;
+  therapist: Session;
+  client: Session;
+  login: (user: User, token: string) => void;
+  logout: (role: "admin" | "therapist" | "client") => void;
+  getActiveSession: (pathname: string) => Session;
+}
+
+const defaultSession: Session = {
+  user: null,
+  token: null,
+  isAuthenticated: false,
+};
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set) => ({
-      user: null,
-      token: null,
-      isAuthenticated: false,
-      login: (user, token) => set({ user, token, isAuthenticated: true }),
-      logout: () => set({ user: null, token: null, isAuthenticated: false }),
+    (set, get) => ({
+      admin: defaultSession,
+      therapist: defaultSession,
+      client: defaultSession,
+
+      login: (user, token) =>
+        set((state) => ({
+          ...state,
+          [user.role]: { user, token, isAuthenticated: true },
+        })),
+
+      logout: (role) =>
+        set((state) => ({
+          ...state,
+          [role]: defaultSession,
+        })),
+
+      getActiveSession: (pathname: string) => {
+        const state = get();
+        if (pathname.startsWith("/admin")) return state.admin;
+        if (pathname.startsWith("/therapist-dash")) return state.therapist;
+        return state.client; // default for root and client pages
+      },
     }),
     {
       name: "auth-storage", // stores in localStorage by default

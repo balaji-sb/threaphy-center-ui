@@ -1,7 +1,14 @@
 {
   "Index": {
-    "title": "Welcome to Our Therapy Center",
-    "description": "Professional support for a peaceful mind."
+    "title": "Welcome to Joyful Journey Multi-Therapy Centre",
+    "description": "Professional support for a peaceful mind.",
+    "coreTherapies": "Our Core Therapies",
+    "individualTherapyTitle": "Individual Therapy",
+    "individualTherapyDesc": "One-on-one sessions for personalized care, self-discovery, and emotional resilience in a safe space.",
+    "couplesCounselingTitle": "Couples Counseling",
+    "couplesCounselingDesc": "Relationship support focused on active communication, resolving conflicts, and deep understanding.",
+    "groupTherapyTitle": "Group Therapy",
+    "groupTherapyDesc": "Community support and shared experiences. Healing together in a secure and guided environment."
   },
   "Navigation": {
     "home": "Home",
@@ -14,5 +21,93 @@
   "Common": {
     "bookNow": "Book an Appointment",
     "language": "Language"
+  },
+  "Services": {
+    "title": "Services",
+    "subtitle": "Discover a comprehensive range of professional therapy services designed to support and empower your mental health journey.",
+    "noServices": "No services available at the moment.",
+    "fallbackTitle": "Specialized Therapy",
+    "fallbackDesc": "A comprehensive description of this therapy service. Designed to foster emotional resilience and deep understanding.",
+    "min": "min",
+    "details": "Details →"
+  },
+  "Therapists": {
+    "title": "Our Therapists",
+    "subtitle": "Meet our empathetic and highly qualified therapists, dedicated to navigating life's challenges with you.",
+    "noTherapists": "No therapists available at the moment.",
+    "photoPlaceholder": "Photo Placeholder",
+    "fallbackRole": "Clinical Psychologist",
+    "fallbackBio": "Extensive experience in CBT and trauma-informed therapy. Dedicated to helping individuals navigate life's challenges with resilience.",
+    "viewProfile": "View Profile"
+  },
+  "Blog": {
+    "title": "Blog",
+    "subtitle": "Explore our latest articles, insights, and expert advice on mental health, relationships, and holistic well-being.",
+    "noBlogs": "No blog posts available at the moment.",
+    "coverPlaceholder": "Blog Cover",
+    "fallbackCategory": "Mental Health",
+    "author": "Author:",
+    "readArticle": "Read Article →"
+  },
+  "Contact": {
+    "subtitle": "Reach out to us if you have any questions, need support, or want to schedule an initial consultation.",
+    "formTitle": "We're Here to Listen",
+    "formSubtitle": "Please fill out the form below and our team will get back to you shortly.",
+    "fullName": "Full Name",
+    "namePlaceholder": "Enter your name",
+    "emailAddress": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "messageLabel": "Your Message",
+    "messagePlaceholder": "How can we support you today?",
+    "submitButton": "Send Message",
+    "addressTitle": "Our Clinic",
+    "addressValue": "No. 42, Sunlight Avenue, Adyar, Chennai - 600020",
+    "phoneTitle": "Call Us",
+    "phoneValue": "+91 98765 43210",
+    "emailTitle": "Email Us",
+    "emailValue": "contact@joyfuljourney.com",
+    "findUs": "Find us on Map"
+  },
+  "ServiceDetails": {
+    "back": "Back to Services",
+    "minutes": "minutes",
+    "fixedPrice": "Fixed Price",
+    "aboutSession": "About this session",
+    "methodology": "Methodology",
+    "evidenceBase": "Evidence-based Cognitive Therapy",
+    "confidentiality": "Confidentiality",
+    "confidentialityPolicy": "100% HIPAA Compliant & Secure",
+    "whatToExpect": "What to expect?",
+    "expectItem1": "Compassionate, non-judgmental environment",
+    "expectItem2": "Goal-oriented session planning",
+    "expectItem3": "Actionable coping strategies",
+    "expectItem4": "Follow-up materials & resources",
+    "totalInvestment": "Total Investment",
+    "perSession": "/ session",
+    "duration": "Session Duration",
+    "platform": "Platform",
+    "platformValue": "Encrypted Video",
+    "cancellations": "Cancellations",
+    "cancellationsValue": "24h notice req.",
+    "bookNow": "Book Session Now ✨",
+    "paymentNote": "No payment needed today · Secure booking"
+  },
+  "TherapistProfile": {
+    "back": "Back to Therapists",
+    "certified": "Certified Therapist",
+    "quickStats": "Quick Stats",
+    "experience": "Experience",
+    "expValue": "8+ Years",
+    "completedSessions": "Completed Sessions",
+    "sessionsValue": "500+",
+    "availability": "Availability",
+    "onlineNow": "Online Now",
+    "professionalBio": "Professional Bio",
+    "specialties": "Specialties",
+    "scheduleCta": "Schedule a Session with Dr. {name}",
+    "immediateAssist": "Need immediate assistance?",
+    "emergencyCta": "Book a same-day emergency consultation with our specialists.",
+    "contactNow": "Contact Now",
+    "defaultBio": "Extensive experience in CBT and trauma-informed therapy. Dedicated to helping individuals navigate life's challenges with resilience."
   }
 }

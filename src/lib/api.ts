@@ -2,7 +2,7 @@ import axios from "axios";
 import { useAuthStore } from "../store/authStore";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api",
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001/api",
   headers: {
     "Content-Type": "application/json",
   },
@@ -10,7 +10,28 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const token = useAuthStore.getState().token;
+    // Determine the current path to fetch the correct token
+    const pathname =
+      typeof window !== "undefined" ? window.location.pathname : "/";
+    let token = useAuthStore.getState().getActiveSession(pathname)?.token;
+
+    // Fallback to reading directly from localStorage if Zustand hasn't hydrated yet
+    if (!token && typeof window !== "undefined") {
+      try {
+        const storedAuth = localStorage.getItem("auth-storage");
+        if (storedAuth) {
+          const parsed = JSON.parse(storedAuth);
+          const state = parsed.state;
+          if (pathname.startsWith("/admin")) token = state?.admin?.token;
+          else if (pathname.startsWith("/therapist-dash"))
+            token = state?.therapist?.token;
+          else token = state?.client?.token;
+        }
+      } catch (e) {
+        console.error("Failed to parse auth storage", e);
+      }
+    }
+
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
