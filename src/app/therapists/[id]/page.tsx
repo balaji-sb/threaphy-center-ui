@@ -172,12 +172,12 @@ export default function TherapistProfilePage() {
                 ))}
               </div>
 
-              <Link
+              {/* <Link
                 href="/services"
                 className="inline-flex items-center justify-center gap-2 bg-primary text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all active:scale-95 text-center"
               >
                 {t("scheduleCta", { name: therapist.name })}
-              </Link>
+              </Link> */}
             </div>
 
             <div className="bg-gradient-to-br from-indigo-600 to-blue-500 rounded-[2rem] p-8 md:p-10 text-white shadow-xl shadow-blue-200/50">

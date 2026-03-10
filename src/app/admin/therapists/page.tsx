@@ -8,6 +8,9 @@ type Therapist = {
   name: string;
   email: string;
   role: string;
+  phone?: string;
+  bio?: { en: string; ta: string };
+  specialties?: { en: string[]; ta: string[] };
   createdAt: string;
 };
 
@@ -23,6 +26,11 @@ export default function AdminTherapistsPage() {
     name: "",
     email: "",
     password: "",
+    phone: "",
+    bio_en: "",
+    bio_ta: "",
+    specialties_en: "",
+    specialties_ta: "",
   });
 
   const fetchTherapists = async () => {
@@ -42,7 +50,17 @@ export default function AdminTherapistsPage() {
   }, []);
 
   const handleOpenAdd = () => {
-    setFormData({ id: "", name: "", email: "", password: "" });
+    setFormData({
+      id: "",
+      name: "",
+      email: "",
+      password: "",
+      phone: "",
+      bio_en: "",
+      bio_ta: "",
+      specialties_en: "",
+      specialties_ta: "",
+    });
     setIsEdit(false);
     setIsModalOpen(true);
   };
@@ -53,6 +71,11 @@ export default function AdminTherapistsPage() {
       name: therapist.name,
       email: therapist.email,
       password: "",
+      phone: therapist.phone || "",
+      bio_en: therapist.bio?.en || "",
+      bio_ta: therapist.bio?.ta || "",
+      specialties_en: therapist.specialties?.en?.join(", ") || "",
+      specialties_ta: therapist.specialties?.ta?.join(", ") || "",
     });
     setIsEdit(true);
     setIsModalOpen(true);
@@ -71,18 +94,22 @@ export default function AdminTherapistsPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        bio: { en: formData.bio_en, ta: formData.bio_ta },
+        specialties: {
+          en: formData.specialties_en.split(",").map((s) => s.trim()).filter(Boolean),
+          ta: formData.specialties_ta.split(",").map((s) => s.trim()).filter(Boolean),
+        },
+        ...(formData.password ? { password: formData.password } : {}),
+      };
+
       if (isEdit) {
-        await api.put(`/users/therapists/${formData.id}`, {
-          name: formData.name,
-          email: formData.email,
-          ...(formData.password ? { password: formData.password } : {}),
-        });
+        await api.put(`/users/therapists/${formData.id}`, payload);
       } else {
-        await api.post("/users/therapists", {
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-        });
+        await api.post("/users/therapists", payload);
       }
       setIsModalOpen(false);
       fetchTherapists();
@@ -181,7 +208,7 @@ export default function AdminTherapistsPage() {
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
-          <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative">
+          <div className="bg-white rounded-3xl p-8 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto custom-scrollbar">
             <h2 className="text-2xl font-bold mb-6 text-slate-900">
               {isEdit ? "Edit Therapist" : "Add Therapist"}
             </h2>
@@ -210,6 +237,75 @@ export default function AdminTherapistsPage() {
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
+                  }
+                  className="w-full h-12 rounded-xl bg-slate-50 px-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-1 ml-1">
+                  Phone Number
+                </label>
+                <input
+                  type="text"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
+                  className="w-full h-12 rounded-xl bg-slate-50 px-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-1 ml-1">
+                  Bio (English)
+                </label>
+                <textarea
+                  value={formData.bio_en}
+                  onChange={(e) =>
+                    setFormData({ ...formData, bio_en: e.target.value })
+                  }
+                  className="w-full h-24 rounded-xl bg-slate-50 p-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all resize-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-1 ml-1">
+                  Bio (Tamil)
+                </label>
+                <textarea
+                  value={formData.bio_ta}
+                  onChange={(e) =>
+                    setFormData({ ...formData, bio_ta: e.target.value })
+                  }
+                  className="w-full h-24 rounded-xl bg-slate-50 p-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all resize-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-1 ml-1">
+                  Specialties (English)
+                  <span className="text-slate-400 font-normal ml-2">
+                    (Comma separated)
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  value={formData.specialties_en}
+                  onChange={(e) =>
+                    setFormData({ ...formData, specialties_en: e.target.value })
+                  }
+                  className="w-full h-12 rounded-xl bg-slate-50 px-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-1 ml-1">
+                  Specialties (Tamil)
+                  <span className="text-slate-400 font-normal ml-2">
+                    (Comma separated)
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  value={formData.specialties_ta}
+                  onChange={(e) =>
+                    setFormData({ ...formData, specialties_ta: e.target.value })
                   }
                   className="w-full h-12 rounded-xl bg-slate-50 px-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all"
                 />

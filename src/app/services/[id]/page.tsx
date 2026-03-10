@@ -174,9 +174,9 @@ export default function ServiceDetailsPage() {
         </div>
 
         {/* Right: Booking Sidebar */}
-        <div className="lg:col-span-1">
+
+        {/* <div className="lg:col-span-1">
           <div className="sticky top-24 bg-white rounded-[2rem] p-8 shadow-2xl shadow-blue-900/10 border border-blue-50 ring-4 ring-blue-50 overflow-hidden">
-            {/* Glossy top decoration */}
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 to-teal-400"></div>
 
             <div className="mb-8">
@@ -231,7 +231,7 @@ export default function ServiceDetailsPage() {
               {t("paymentNote")}
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

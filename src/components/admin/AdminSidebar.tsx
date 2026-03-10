@@ -6,12 +6,13 @@ import { useAuthStore } from "@/store/authStore";
 
 const adminNavItems = [
   { href: "/admin", label: "Dashboard", icon: "📊" },
-  { href: "/admin/appointments", label: "Appointments", icon: "🗓️" },
-  { href: "/admin/users", label: "Users & Clients", icon: "👥" },
+  // { href: "/admin/appointments", label: "Appointments", icon: "🗓️" },
+  // { href: "/admin/users", label: "Users & Clients", icon: "👥" },
   { href: "/admin/therapists", label: "Therapists", icon: "🩺" },
   { href: "/admin/services", label: "Services", icon: "✨" },
   { href: "/admin/blogs", label: "Blogs", icon: "📝" },
-  { href: "/admin/settings", label: "Settings", icon: "⚙️" },
+  { href: "/admin/events", label: "Events", icon: "📅" },
+  // { href: "/admin/settings", label: "Settings", icon: "⚙️" },
 ];
 
 export function AdminSidebar() {

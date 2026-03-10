@@ -1,12 +1,21 @@
 import axios from "axios";
 import { useAuthStore } from "../store/authStore";
 
+export const BASE_URL = process.env.NEXT_PUBLIC_API_URL ? new URL(process.env.NEXT_PUBLIC_API_URL).origin : "http://localhost:5001";
+export const API_URL = `${BASE_URL}/api`;
+
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001/api",
+  baseURL: API_URL,
   headers: {
     "Content-Type": "application/json",
   },
 });
+
+export const getStaticUrl = (path: string | undefined) => {
+  if (!path) return null;
+  if (path.startsWith("http")) return path;
+  return `${BASE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
+};
 
 api.interceptors.request.use(
   (config) => {

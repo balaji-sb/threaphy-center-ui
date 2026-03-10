@@ -59,18 +59,18 @@ export default function AdminDashboardPage() {
             value: stats.activeTherapists,
             color: "bg-secondary",
           },
-          {
-            icon: "👥",
-            label: "Total Clients",
-            value: stats.totalClients,
-            color: "bg-accent",
-          },
-          {
-            icon: "💰",
-            label: "Monthly Revenue",
-            value: `₹${stats.monthlyRevenue}`,
-            color: "bg-green-500",
-          },
+          // {
+          //   icon: "👥",
+          //   label: "Total Clients",
+          //   value: stats.totalClients,
+          //   color: "bg-accent",
+          // },
+          // {
+          //   icon: "💰",
+          //   label: "Monthly Revenue",
+          //   value: `₹${stats.monthlyRevenue}`,
+          //   color: "bg-green-500",
+          // },
         ].map((stat) => (
           <div
             key={stat.label}
@@ -95,18 +95,18 @@ export default function AdminDashboardPage() {
         <h2 className="text-lg font-bold text-slate-700 mb-4">Manage</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            {
-              href: "/admin/appointments",
-              icon: "🗓️",
-              label: "Appointments",
-              desc: "View & manage all bookings",
-            },
-            {
-              href: "/admin/users",
-              icon: "👥",
-              label: "Users & Clients",
-              desc: "Manage client accounts",
-            },
+            // {
+            //   href: "/admin/appointments",
+            //   icon: "🗓️",
+            //   label: "Appointments",
+            //   desc: "View & manage all bookings",
+            // },
+            // {
+            //   href: "/admin/users",
+            //   icon: "👥",
+            //   label: "Users & Clients",
+            //   desc: "Manage client accounts",
+            // },
             {
               href: "/admin/therapists",
               icon: "🩺",
@@ -124,6 +124,12 @@ export default function AdminDashboardPage() {
               icon: "📝",
               label: "Blogs",
               desc: "Publish & manage blog posts",
+            },
+            {
+              href: "/admin/events",
+              icon: "📅",
+              label: "Events",
+              desc: "Manage homepage events",
             },
           ].map((item) => (
             <a
@@ -144,7 +150,7 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Recent Appointments */}
-      <div className="rounded-3xl border border-border/50 bg-white shadow-sm overflow-hidden">
+      {/* <div className="rounded-3xl border border-border/50 bg-white shadow-sm overflow-hidden">
         <div className="p-6 border-b border-border/50 flex items-center justify-between">
           <h2 className="text-xl font-bold text-slate-900">
             Recent Appointments
@@ -220,7 +226,7 @@ export default function AdminDashboardPage() {
             </tbody>
           </table>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
