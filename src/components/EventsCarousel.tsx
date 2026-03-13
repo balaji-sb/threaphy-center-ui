@@ -3,8 +3,16 @@
 import { useEffect, useState, useRef } from "react";
 import api from "@/lib/api";
 import { useLocale, useTranslations } from "next-intl";
-import { Calendar, MapPin, ChevronLeft, ChevronRight, ExternalLink, Sparkles } from "lucide-react";
+import {
+  Calendar,
+  MapPin,
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  Sparkles,
+} from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 type Event = {
   _id: string;
@@ -41,7 +49,10 @@ export default function EventsCarousel() {
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
-      const scrollTo = direction === "left" ? scrollLeft - clientWidth * 0.8 : scrollLeft + clientWidth * 0.8;
+      const scrollTo =
+        direction === "left"
+          ? scrollLeft - clientWidth * 0.8
+          : scrollLeft + clientWidth * 0.8;
       scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
     }
   };
@@ -53,7 +64,10 @@ export default function EventsCarousel() {
           <div className="h-8 w-48 bg-slate-200 animate-pulse rounded-full mb-8"></div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="aspect-[4/5] bg-slate-100 animate-pulse rounded-[3rem]"></div>
+              <div
+                key={i}
+                className="aspect-[4/5] bg-slate-100 animate-pulse rounded-[3rem]"
+              ></div>
             ))}
           </div>
         </div>
@@ -114,7 +128,7 @@ export default function EventsCarousel() {
                 {/* Image Section */}
                 <div className="relative h-[300px] overflow-hidden">
                   {event.image ? (
-                    <img
+                    <Image
                       src={event.image}
                       alt={event.title[locale]}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
@@ -124,14 +138,16 @@ export default function EventsCarousel() {
                       <Calendar className="h-20 w-20 text-slate-300" />
                     </div>
                   )}
-                  
+
                   {/* Glass Card for Date */}
                   <div className="absolute top-6 left-6 p-4 rounded-3xl bg-white/20 backdrop-blur-xl border border-white/30 text-white flex flex-col items-center min-w-[70px] shadow-2xl">
                     <span className="text-2xl font-black leading-none">
                       {new Date(event.date).getDate()}
                     </span>
                     <span className="text-xs font-black uppercase tracking-widest mt-1 opacity-80">
-                      {new Date(event.date).toLocaleString(locale, { month: 'short' })}
+                      {new Date(event.date).toLocaleString(locale, {
+                        month: "short",
+                      })}
                     </span>
                   </div>
 
@@ -159,7 +175,9 @@ export default function EventsCarousel() {
                         <Calendar className="h-5 w-5" />
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Date & Time</span>
+                        <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                          Date & Time
+                        </span>
                         <span className="text-sm font-bold">
                           {new Date(event.date).toLocaleDateString(locale, {
                             weekday: "long",
@@ -175,8 +193,12 @@ export default function EventsCarousel() {
                         <MapPin className="h-5 w-5" />
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Location</span>
-                        <span className="text-sm font-bold">{event.location[locale]}</span>
+                        <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                          Location
+                        </span>
+                        <span className="text-sm font-bold">
+                          {event.location[locale]}
+                        </span>
                       </div>
                     </div>
                   </div>

@@ -7,7 +7,16 @@ import api from "@/lib/api";
 export default function TherapistDashboardPage() {
   const therapistSession = useAuthStore((state) => state.therapist);
   const { user } = therapistSession;
-  const [appointments, setAppointments] = useState<any[]>([]);
+
+  interface Appointment {
+    _id: string;
+    status: string;
+    date: string;
+    client?: { name: string };
+    service?: { title?: { en: string; ta: string } };
+    [key: string]: unknown;
+  }
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

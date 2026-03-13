@@ -8,7 +8,17 @@ import Link from "next/link";
 export default function ClientDashboardPage() {
   const clientSession = useAuthStore((state) => state.client);
   const { user } = clientSession;
-  const [appointments, setAppointments] = useState<any[]>([]);
+
+  interface Appointment {
+    _id: string;
+    status: string;
+    date: string;
+    paymentStatus?: string;
+    service?: { title?: { en: string; ta: string } };
+    therapist?: { name: string };
+    [key: string]: unknown;
+  }
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -14,10 +14,10 @@ import {
 } from "lucide-react";
 import HeroEventsCarousel from "@/components/HeroEventsCarousel";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
   const t = useTranslations("Index");
-  const common = useTranslations("Common");
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
 
   return (
@@ -199,7 +199,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-xl font-bold text-slate-900 italic leading-relaxed">
-                  "{item.text}"
+                  &quot;{item.text}&quot;
                 </p>
                 <div className="flex items-center gap-4 pt-4 border-t border-slate-100">
                   <div className="w-10 h-10 rounded-full bg-slate-200"></div>
@@ -218,14 +218,14 @@ export default function Home() {
         <div className="container px-4 md:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
-              <img
+              <Image
                 src="/therapy_vision_image_1773167911909.png"
                 alt="Our Vision"
                 className="w-full h-full object-cover opacity-80"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent flex items-end p-8">
                 <p className="text-white text-xl font-bold italic">
-                  "Healing is not linear, but it is always possible."
+                  &quot;Healing is not linear, but it is always possible.&quot;
                 </p>
               </div>
             </div>
@@ -343,7 +343,7 @@ export default function Home() {
                 <div className="flex items-center gap-4">
                   <div className="flex -space-x-4">
                     {[1, 2, 3].map((i) => (
-                      <img
+                      <Image
                         key={i}
                         src={`https://i.pravatar.cc/100?u=${i + 10}`}
                         className="w-12 h-12 rounded-full border-2 border-slate-900 object-cover"

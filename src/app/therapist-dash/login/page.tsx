@@ -31,7 +31,8 @@ export default function TherapistLoginPage() {
 
       login(user, accessToken);
       router.push("/therapist-dash");
-    } catch (err: any) {
+    } catch (error) {
+      const err = error as { response?: { data?: { message?: string } } };
       setError(
         err.response?.data?.message || "Invalid credentials. Please try again.",
       );

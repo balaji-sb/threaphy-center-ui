@@ -33,7 +33,8 @@ export default function RegisterPage() {
 
       // Initially, new users are likely clients unless assigned otherwise by an admin
       router.push("/client-dash");
-    } catch (err: any) {
+    } catch (error) {
+      const err = error as { response?: { data?: { message?: string } } };
       setError(
         err.response?.data?.message ||
           "Failed to create account. Please try again.",

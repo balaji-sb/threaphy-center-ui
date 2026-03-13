@@ -7,7 +7,7 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useAuthStore } from "@/store/authStore";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { User, LogOut, LayoutDashboard, Menu, X } from "lucide-react";
+import { LogOut, LayoutDashboard, Menu, X } from "lucide-react";
 
 export function Navbar() {
   const t = useTranslations("Navigation");
@@ -70,9 +70,7 @@ export function Navbar() {
             <div className="w-10 h-10 rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20 rotate-[-10deg] group-hover:rotate-0 transition-transform duration-500">
               <span className="text-white font-black text-xl">J</span>
             </div>
-            <span
-              className="font-black text-2xl tracking-tighter transition-colors duration-500 text-slate-900"
-            >
+            <span className="font-black text-2xl tracking-tighter transition-colors duration-500 text-slate-900">
               Joyful<span className="text-primary italic">Journey</span>
             </span>
           </Link>

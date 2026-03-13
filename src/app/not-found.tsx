@@ -22,7 +22,7 @@ export default function NotFound() {
             Page Not Found
           </h2>
           <p className="text-slate-500 mb-8">
-            Oops! The page you were looking for doesn't exist or has been moved.
+            Oops! The page you were looking for doesn&apos;t exist or has been moved.
           </p>
           <Link
             href="/"

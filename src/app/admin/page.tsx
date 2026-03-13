@@ -9,7 +9,13 @@ export default function AdminDashboardPage() {
   const router = useRouter();
   const adminSession = useAuthStore((state) => state.admin);
   const { user, isAuthenticated } = adminSession;
-  const [stats, setStats] = useState<any>(null);
+
+  interface AdminStats {
+    totalServices: number;
+    activeTherapists: number;
+    [key: string]: unknown;
+  }
+  const [stats, setStats] = useState<AdminStats | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

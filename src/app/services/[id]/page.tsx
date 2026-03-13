@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import Link from "next/link";
@@ -20,7 +20,6 @@ type Service = {
 
 export default function ServiceDetailsPage() {
   const { id } = useParams();
-  const router = useRouter();
   const locale = useLocale() as "en" | "ta";
   const t = useTranslations("ServiceDetails");
   const [service, setService] = useState<Service | null>(null);

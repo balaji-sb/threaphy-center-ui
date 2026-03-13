@@ -31,7 +31,8 @@ export default function ClientLoginPage() {
 
       login(user, accessToken);
       router.push("/client-dash");
-    } catch (err: any) {
+    } catch (error) {
+      const err = error as { response?: { data?: { message?: string } } };
       setError(
         err.response?.data?.message || "Invalid credentials. Please try again.",
       );

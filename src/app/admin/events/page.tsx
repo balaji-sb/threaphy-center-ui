@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import api, { getStaticUrl } from "@/lib/api";
+import Image from "next/image";
 
 type Event = {
   _id: string;
@@ -199,9 +200,11 @@ export default function AdminEventsPage() {
                   >
                     <td className="px-6 py-4 font-bold text-slate-900 flex items-center gap-3">
                       {ev.image && (
-                        <img 
+                        <Image 
                           src={getStaticUrl(ev.image) || ""} 
                           alt="" 
+                          width={32}
+                          height={32}
                           className="w-8 h-8 rounded-lg object-cover bg-slate-100"
                         />
                       )}
@@ -357,7 +360,7 @@ export default function AdminEventsPage() {
                     </label>
                     {imagePreview && (
                       <div className="w-12 h-12 rounded-xl bg-slate-100 overflow-hidden border border-slate-200">
-                        <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                        <Image src={imagePreview} alt="Preview" width={48} height={48} className="w-full h-full object-cover" />
                       </div>
                     )}
                   </div>

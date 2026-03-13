@@ -11,6 +11,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 type Event = {
   _id: string;
@@ -104,9 +105,11 @@ export default function HeroEventsCarousel() {
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
               {event.image ? (
-                <img
+                <Image
                   src={getStaticUrl(event.image) || ""}
                   alt={event.title[locale]}
+                  width={1920}
+                  height={1080}
                   className="w-full h-full object-cover"
                 />
               ) : (

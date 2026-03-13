@@ -37,7 +37,8 @@ export default function LoginPage() {
         default:
           router.push("/client-dash");
       }
-    } catch (err: any) {
+    } catch (error) {
+      const err = error as { response?: { data?: { message?: string } } };
       setError(
         err.response?.data?.message || "Failed to login. Please try again.",
       );
