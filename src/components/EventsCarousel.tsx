@@ -131,6 +131,8 @@ export default function EventsCarousel() {
                     <Image
                       src={event.image}
                       alt={event.title[locale]}
+                      width={500}
+                      height={250}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
                   ) : (

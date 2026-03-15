@@ -221,6 +221,8 @@ export default function Home() {
               <Image
                 src="/therapy_vision_image_1773167911909.png"
                 alt="Our Vision"
+                width={1920}
+                height={1080}
                 className="w-full h-full object-cover opacity-80"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent flex items-end p-8">
@@ -348,6 +350,8 @@ export default function Home() {
                         src={`https://i.pravatar.cc/100?u=${i + 10}`}
                         className="w-12 h-12 rounded-full border-2 border-slate-900 object-cover"
                         alt="Community member"
+                        width={500}
+                        height={250}
                       />
                     ))}
                     <div className="w-12 h-12 rounded-full border-2 border-slate-900 bg-slate-800 flex items-center justify-center text-[10px] font-black">
