@@ -27,7 +27,7 @@ export function LanguageSwitcher() {
           <span className="sr-only">Toggle language</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="z-[105]">
         <DropdownMenuItem onClick={() => handleLanguageChange("en")}>
           English
         </DropdownMenuItem>

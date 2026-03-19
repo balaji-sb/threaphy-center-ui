@@ -263,7 +263,7 @@ export default function AdminServicesPage() {
                     onChange={(e) =>
                       setFormData({ ...formData, titleTa: e.target.value })
                     }
-                    className="w-full h-12 rounded-xl bg-slate-50 px-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all text-right"
+                    className="w-full h-12 rounded-xl bg-slate-50 px-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all"
                     dir="auto"
                   />
                 </div>
@@ -295,7 +295,7 @@ export default function AdminServicesPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, descTa: e.target.value })
                   }
-                  className="w-full rounded-xl bg-slate-50 p-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all resize-none text-right"
+                  className="w-full rounded-xl bg-slate-50 p-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all resize-none"
                   dir="auto"
                 />
               </div>
@@ -331,7 +331,8 @@ export default function AdminServicesPage() {
                         methodologyTa: e.target.value,
                       })
                     }
-                    className="w-full h-12 rounded-xl bg-slate-50 px-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all text-right"
+                    className="w-full h-12 rounded-xl bg-slate-50 px-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all"
+                    dir="auto"
                   />
                 </div>
               </div>
@@ -367,7 +368,8 @@ export default function AdminServicesPage() {
                         confidentialityTa: e.target.value,
                       })
                     }
-                    className="w-full h-12 rounded-xl bg-slate-50 px-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all text-right"
+                    className="w-full h-12 rounded-xl bg-slate-50 px-4 text-sm border-none focus:ring-2 focus:ring-primary outline-none transition-all"
+                    dir="auto"
                   />
                 </div>
               </div>
@@ -400,7 +402,7 @@ export default function AdminServicesPage() {
                     ))}
                   </div>
                   <div className="space-y-3">
-                    <label className="block text-xs font-black uppercase tracking-wider text-slate-400 text-right">
+                    <label className="block text-xs font-black uppercase tracking-wider text-slate-400">
                       Tamil Points
                     </label>
                     {formData.whatToExpectTa.map((point, idx) => (
